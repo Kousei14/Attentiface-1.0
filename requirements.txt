@@ -1,0 +1,8 @@
+db-sqlite3
+Pillow
+opencv-contrib-python
+cmake
+mediapipe
+yagmail
+cx_Freeze
+pandas
