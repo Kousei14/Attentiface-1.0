@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import *
 from itertools import count
 from PIL import Image, ImageTk
-from Hakk_mainscreen_MP_LBPH import mainscreen
+from menu import mainscreen
 
-class splash_screen:
+class Splash_screen:
     def __init__(self,root):
         self.root = root
         window_width = 480
@@ -49,19 +49,19 @@ class splash_screen:
 
         def main_window():
             self.root.destroy()
-            self.win=Tk()
-            self.main_S=mainscreen(self.win)
+            self.win = Tk()
+            self.main_S = mainscreen(self.win)
             self.win.mainloop()
 
         gif_lb = tk.Label(self.root,bg="red",border=0)
         gif_lb.pack()
 
-        extract_image_from_gif('splash_screen_loading_final.gif')
+        extract_image_from_gif(r'loading_animations\splash_screen_loading_final.gif')
         play_gif()
 
         self.root.after(3000, main_window)
 
 if __name__ == "__main__":
-    root=tk.Tk()
-    obj=splash_screen(root)
+    root = tk.Tk()
+    obj = Splash_screen(root)
     root.mainloop()

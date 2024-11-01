@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
-from Hakk_ATTENDANCE import In
-from Hakk_ATTENDANCE_cam2 import Out
+from recognize_cam1 import In
+from recognize_cam2 import Out
 
 class Choose:
     def __init__(self, root):

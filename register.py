@@ -12,7 +12,7 @@ import glob
 from itertools import count
 import numpy as np
 import threading
-from Hakk_loadingRegister import loadReg
+from splash_register import loadReg
 
 stop=0
 

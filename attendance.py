@@ -4,12 +4,12 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import sqlite3
 from time import strftime
-from Hakk_sqlite3_CREDENTIALS_Class import DB_Credentials
+from queries import DB_Credentials
 import csv
 from tkinter import filedialog
 from tkinter import messagebox
 from datetime import datetime
-from Hakk_loadingEmail import loadEmail
+from splash_email import loadEmail
 from itertools import count
 import yagmail
 import pandas as pd
