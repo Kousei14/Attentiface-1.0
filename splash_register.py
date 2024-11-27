@@ -19,7 +19,7 @@ class loadReg:
         bg_label = Label(self.root, border=0, bg="red")
         bg_label.pack(fill=BOTH, expand=True)
 
-        img=Image.open(r"pictures\data_registered.png")
+        img=Image.open(r"icons\data_registered.png")
         img=img.resize((350,350))
 
         root.img=ImageTk.PhotoImage(img)

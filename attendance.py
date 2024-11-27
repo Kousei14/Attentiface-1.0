@@ -43,7 +43,7 @@ class Attendance_screen:
         def move_app(self,e):
             root.geometry(f'+{e.x_root}+{e.y_root}')
 
-        self.bg_mainscreen = PhotoImage(file="bg_attendance.png")
+        self.bg_mainscreen = PhotoImage(file=r"backgrounds/bg_attendance.png")
         canvas = tk.Canvas(root, width=1280, height=720, background="red",highlightthickness=0)
         canvas.pack()
         canvas.create_image(0,0, image=self.bg_mainscreen ,anchor="nw")
@@ -53,7 +53,7 @@ class Attendance_screen:
 
         bg_label.bind("<B1-Motion>", move_app)
     
-    #Database TABLE in the app
+    # Database TABLE in the app
 
         frame_DB=LabelFrame(root,bd=0,bg="white",relief=RIDGE,font=("Franklin Gothic Demi",12))
         frame_DB.place(x=67,y=137,width=1168,height=383)
@@ -91,12 +91,12 @@ class Attendance_screen:
         self.student_table.column("Time Out",anchor=CENTER,width=140)
         self.student_table.column("Date",anchor=CENTER,width=90)
 
-        #adjustable table
+        # adjustable table
 
         self.student_table.pack(fill=BOTH,expand=1)
         self.student_table.bind("<ButtonRelease>")
 
-    #button exit
+    # button exit
                 
         img5_inactive=Image.open(r"pictures\exit_data_inactive.png")
         img5_inactive=img5_inactive.resize((70,70))
@@ -122,7 +122,7 @@ class Attendance_screen:
         button_exit.bind("<ButtonRelease-1>",unpressed_exit)
         button_exit.place(x=1160,y=555,width=70,height=70)
     
-    #button home
+    # button home
                 
         img6_inactive=Image.open(r"pictures\home_inactive.png")
         img6_inactive=img6_inactive.resize((70,70))
@@ -148,7 +148,7 @@ class Attendance_screen:
         button_home.bind("<ButtonRelease-1>",unpressed_home)
         button_home.place(x=1100,y=555,width=70,height=70)
     
-    #search
+    # search
         img_search=Image.open(r"pictures\search.png")
         img_search=img_search.resize((100,50))
 
@@ -156,12 +156,12 @@ class Attendance_screen:
         button_search=Button(root,image=root.img_search,textvariable=self.var_search_entry,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.search)
         button_search.place(x=256,y=567,width=100,height=50)
 
-        #Search entry
+        # Search entry
         self.var_search_entry=StringVar()
         Search_txt=tk.Entry(root,textvariable=self.var_search_entry,width=14,bd=0,font=("Montserrat",12, "bold"))
         canvas.create_window(164, 597, window=Search_txt)
 
-    #reset
+    # reset
         img_reset=Image.open(r"pictures\reset.png")
         img_reset=img_reset.resize((100,50))
 
@@ -169,7 +169,7 @@ class Attendance_screen:
         button_reset=Button(root,image=root.img_reset,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.show_data)
         button_reset.place(x=358,y=567,width=100,height=50)
     
-    #export
+    # export
         img_export=Image.open(r"pictures\export.png")
         img_export=img_export.resize((160,80))
 
@@ -177,7 +177,7 @@ class Attendance_screen:
         button_export=Button(root,image=root.img_export,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.export_csv)
         button_export.place(x=660,y=550,width=160,height=80)
 
-    #send email
+    # send email
         img_email=Image.open(r"pictures\send_email.png")
         img_email=img_email.resize((160,80))
 
@@ -185,7 +185,7 @@ class Attendance_screen:
         button_email=Button(root,image=root.img_email,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.send_mail)
         button_email.place(x=820,y=550,width=160,height=80)
 
-    #change email
+    # change email
         img_change_email=Image.open(r"pictures\change_email.png")
         img_change_email=img_change_email.resize((160,80))
 
@@ -193,22 +193,22 @@ class Attendance_screen:
         button_change_email=Button(root,image=root.img_change_email,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white", command=self.cMail)
         button_change_email.place(x=980,y=550,width=130,height=80)
 
-    #Start Entry
+    # Start Entry
         self.var_start_entry=StringVar()
         start_txt=tk.Entry(root,textvariable=self.var_start_entry,width=7,bd=0,font=("Montserrat",10, "bold"))
         canvas.create_window(682, 101, window=start_txt)
 
-    #End Entry
+    # End Entry
         self.var_end_entry=StringVar()
         end_txt=tk.Entry(root,textvariable=self.var_end_entry,width=7,bd=0,font=("Montserrat",10, "bold"))
         canvas.create_window(863, 101, window=end_txt)
 
-    #Break Entry
+    # Break Entry
         self.var_break_entry=StringVar()
         break_txt=tk.Entry(root,textvariable=self.var_break_entry,width=7,bd=0,font=("Montserrat",10, "bold"))
         canvas.create_window(1058, 101, window=break_txt)
 
-    #Save time
+    # Save time
         img_save=Image.open(r"pictures\save1.png")
         img_save=img_save.resize((70,35))
 
@@ -216,7 +216,7 @@ class Attendance_screen:
         button_saveimg_save=Button(root,image=root.img_save,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.saveTime)
         button_saveimg_save.place(x=1108,y=86,width=70,height=30)
 
-    #Delete all
+    # Delete all
         img_delete_all=Image.open(r"pictures\delete_all.png")
         img_delete_all=img_delete_all.resize((70,35))
 
@@ -224,7 +224,7 @@ class Attendance_screen:
         button_delete_all=Button(root,image=root.img_delete_all,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.delAll)
         button_delete_all.place(x=1180,y=86,width=70,height=30)
 
-    #clock
+    # clock
         def time():
             string = strftime('%I:%M %p')
             clock.config(text=f"{string}")
@@ -522,7 +522,7 @@ class Attendance_screen:
                         time_24 = time_24 + ':00'
                     time_list24.append(time_24)
 
-                #UPDATE DATA
+                # update data
                 ID=1
                 sql_update=f""" UPDATE Time_limit SET Start_time="{time_list24[0]}", End_time="{time_list24[1]}", Break_time="{self.var_break_entry.get()}" WHERE ID={ID} """
                 cursor.execute(sql_update)

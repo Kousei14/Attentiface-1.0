@@ -28,14 +28,14 @@ class DB_Credentials:
         canvas.pack(fill=BOTH,expand=TRUE)
         canvas.create_image(0,0, image=self.photoimg,anchor="nw")
 
-        #E_MAIL
+        # E_MAIL
         Email_txt=tk.Entry(root,textvariable=self.varEmail,width=17,bd=0,font=("Montserrat",10, "bold"))
         canvas.create_window(252, 108, window=Email_txt)
-        #Password
+        # Password
         Password_txt=tk.Entry(root,textvariable=self.varPass,width=17,bd=0,font=("Montserrat",10, "bold"))
         canvas.create_window(263, 177, window=Password_txt)
 
-        #save
+        # save
         img_save=Image.open(r"pictures\save1.png")
         img_save=img_save.resize((70,35))
 
@@ -43,7 +43,7 @@ class DB_Credentials:
         button_save=Button(root,image=root.img_save,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.Insert_DB)
         button_save.place(x=117,y=210,width=70,height=35)
 
-        #update
+        # update
         img_update=Image.open(r"pictures\update1.png")
         img_update=img_update.resize((70,35))
 
@@ -51,7 +51,7 @@ class DB_Credentials:
         button_update=Button(root,image=root.img_update,bg="white",borderwidth=0,width=200,highlightthickness=0,height=200,bd=0,relief="raised",activebackground="white",command=self.Update_DB)
         button_update.place(x=217,y=210,width=70,height=35)
 
-        #exit
+        # exit
         img_exit=Image.open(r"pictures\exit1.png")
         img_exit=img_exit.resize((70,35))
 
@@ -93,7 +93,7 @@ class DB_Credentials:
                 count = cursor.fetchone()[0]
 
                 if count < 1:
-                    #INSERT DATA
+                    # INSERT DATA
                     sql_insert=f""" INSERT INTO credentials( 
                                                 E_mail, 
                                                 Password) VALUES
@@ -116,7 +116,7 @@ class DB_Credentials:
             try:
                 connection = sqlite3.connect('Credentials_Database')
                 cursor = connection.cursor()
-                #UPDATE DATA
+                # UPDATE DATA
                 ID=1
                 sql_update=f""" UPDATE credentials SET E_mail="{str(self.varEmail.get())}", Password="{str(self.varPass.get())}" """
 

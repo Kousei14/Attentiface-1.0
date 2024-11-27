@@ -27,9 +27,9 @@ class Out:
 
         faceCascade=mp.solutions.face_detection.FaceDetection(0.5)
         clf=cv2.face.LBPHFaceRecognizer_create()
-        clf.read("model_classifier.xml")
+        clf.read(r"detection_model\recognizer.xml")
 
-        #Convert 24 hour time to 12 hour time
+        # Convert 24 hour time to 12 hour time
         def twentyfour_to_twelve(time):
             # Split the time into hours and minutes
             hours, minutes, seconds = time.split(":")
@@ -53,7 +53,8 @@ class Out:
         #-------------------------------------------------------
 
         
-        model_spoof = cv2.dnn.readNetFromCaffe('detection_model/deploy.prototxt', 'detection_model/Widerface-RetinaFace.caffemodel')
+        model_spoof = cv2.dnn.readNetFromCaffe('detection_model/deploy.prototxt', 
+                                               'detection_model/Widerface-RetinaFace.caffemodel')
             
         #------------------------------------------------------------
 
@@ -63,29 +64,29 @@ class Out:
             gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
             results = faceCascade.process(gray_image)
 
-            connection1=sqlite3.connect("Attendance_Database")
+            connection1=sqlite3.connect(r"databases/Attendance_Database")
             mycursor1=connection1.cursor()
 
             if results.detections:
                 for id, detection in enumerate(results.detections):
-                    bboxC = detection.location_data.relative_bounding_box #normalized values from the class 
+                    bboxC = detection.location_data.relative_bounding_box # normalized values from the class 
                     ih , iw, ic = img.shape
                     bbox = int(bboxC.xmin * iw), int(bboxC.ymin * ih), int(bboxC.width * iw), int(bboxC.height * ih)
                     
-                    #draw rectangle
+                    # draw rectangle
                     x,y,w,h=bbox
                     x1,y1=x+w,y+h
                     cv2.rectangle(img,bbox, (255,255,255),3)
                     cv2.putText(img, f'{int(detection.score[0]*100)}%', (x,y1+26), cv2.FONT_HERSHEY_DUPLEX,0.8,(255,255,255),2)
 
-                    #predict face
+                    # predict face
                     gray_image = cv2.cvtColor(gray_image, cv2.COLOR_RGB2GRAY)
                     if len(gray_image[y:y+h,x:x+w]) !=0:
                         if len(gray_image[y:y+h,x:x+w][0]) != 0:
                             id,predict=clf.predict(gray_image[y:y+h,x:x+w])
                             confidence=int((100*(1-predict/300)))
 
-                            connection=sqlite3.connect("face_recognition_software_system")
+                            connection=sqlite3.connect(r"databases/face_recognition_software_system")
                             mycursor=connection.cursor()
 
                             mycursor.execute("SELECT Last_Name FROM student_details where ID="+str(id))

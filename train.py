@@ -54,7 +54,7 @@ class msgbox:
             ids.append(id)
         ids=np.array(ids) #convert into an array
 
-        #TRAIN THE DATA using LBPH
+        # TRAIN THE DATA using LBPH
 
         LBPH_clf=cv2.face.LBPHFaceRecognizer_create()
         LBPH_clf.train(faces,ids)
