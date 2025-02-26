@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 
 from utils.utilities import image_utils as imgu
-from license import License
+from create_license import License
 
 class Expiration:
     def __init__(self, root):
