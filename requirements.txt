@@ -9,3 +9,5 @@ yagmail
 cx_Freeze
 pandas
 numpy
+tensorflow
+smtplib

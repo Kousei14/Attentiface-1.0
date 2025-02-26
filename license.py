@@ -1,120 +1,130 @@
 from tkinter import *
 import tkinter as tk
-from PIL import Image, ImageTk
-from tkinter import ttk
-from main import Splash_screen
 from tkinter import messagebox
 
-class Login:
+from utils.utilities import image_utils as imgu
+from main import Main
+
+class License:
     def __init__(self, root):
         self.root = root
+        self.imgu = imgu()
+
+        # Configurations
         window_width = 920
         window_height = 575
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         x_coor = (screen_width / 2) - (window_width / 2)
         y_coor = (screen_height / 2) - (window_height / 2)
+
         self.root.geometry(f'{window_width}x{window_height}+{int(x_coor)}+{int(y_coor)}')
         self.root.wm_attributes("-transparentcolor", "red")
         self.root.overrideredirect(1)
         self.root.iconbitmap(r'logos\attentiface_icon_v2.ico')
 
-        self.bg_mainscreen = PhotoImage(file=r"backgrounds\bg_login.png")
-        canvas1 = tk.Canvas(root, width=1280, height=720, background="red", highlightthickness=0)
-        canvas1.pack()
-        canvas1.create_image(0, 0, image=self.bg_mainscreen, anchor="nw")
-        
-        bg_label = tk.Label(self.root, border=0, bg="red", image=self.bg_mainscreen)
-        bg_label.pack(fill=BOTH, expand=True)
+        # Background
+        self.bg = PhotoImage(
+            file = r"backgrounds\bg_license.png"
+        )
+        canvas = tk.Canvas(
+            root, 
+            width = 1280, 
+            height = 720, 
+            background = "red", 
+            highlightthickness = 0
+        )
+        canvas.pack()
+        canvas.create_image(
+            0, 0, 
+            image = self.bg, 
+            anchor = "nw"
+        )
+        bg_label = tk.Label(
+            self.root, 
+            border = 0, 
+            bg = "red", 
+            image = self.bg
+        )
+        bg_label.pack(
+            fill = BOTH, 
+            expand = True
+        )
 
-        # Username
+        # Username Textbox
         self.var_username = StringVar()
-        username_txt = tk.Entry(root, textvariable=self.var_username, width=20, bd=0, font=("Montserrat", 12, "bold"))
-        canvas1.create_window(730, 185, window=username_txt)
-        
-        # Password
+        self.imgu.setup_textbox(
+            root,
+            canvas = canvas, 
+            variable = self.var_username, 
+            x = 730, 
+            y = 185
+        )
+
+        # Password Textbox
         self.var_password = StringVar()
-        password_txt = tk.Entry(root, textvariable=self.var_password, width=20, bd=0, font=("Montserrat", 12, "bold"))
-        canvas1.create_window(730, 265, window=password_txt)
-        
-        # Licence Key
+        self.imgu.setup_textbox(
+            root,
+            canvas = canvas, 
+            variable = self.var_password, 
+            x = 730, 
+            y = 265
+        )
+
+        # License Textbox
         self.var_license = StringVar()
-        license_txt = tk.Entry(root, textvariable=self.var_license, width=20, bd=0, font=("Montserrat", 12, "bold"))
-        canvas1.create_window(730, 355, window=license_txt)
+        self.imgu.setup_textbox(
+            root,
+            canvas = canvas, 
+            variable = self.var_license, 
+            x = 730, 
+            y = 355
+        )
 
-        # Button activate
-        img1_inactive = Image.open(r"icons\activate_inactive.png")
-        img1_inactive = img1_inactive.resize((177, 89))
+        # Activate Button
+        self.imgu.setup_button(
+            self.root,
+            img_path_inactive = r"icons\activate_inactive.png", 
+            img_path_active = r"icons\activate_active.png", 
+            button_x = 632, 
+            button_y = 393, 
+            button_width = 177, 
+            button_height = 45, 
+            img_width = 177, 
+            img_height = 89, 
+            command = self.open_main
+        )
 
-        img1_active = Image.open(r"icons\activate_active.png")
-        img1_active = img1_active.resize((177, 89))
+        # Close Button
+        self.imgu.setup_button(
+            self.root,
+            img_path_inactive = r"buttons\close_inactive.png", 
+            img_path_active = r"buttons\close_active.png", 
+            button_x = 870, 
+            button_y = 20, 
+            button_width = 25, 
+            button_height = 25, 
+            img_width = 25, 
+            img_height = 25, 
+            command = self.close
+        )
 
-        root.img1_inactive = ImageTk.PhotoImage(img1_inactive)
-        root.img1_active = ImageTk.PhotoImage(img1_active)
-
-        def on_enter_student(event):
-            button_student.config(image=root.img1_active)
-
-        def on_inactive_student(event):
-            button_student.config(image=root.img1_inactive)
-
-        def pressed_student(event):
-            button_student.config(image=root.img1_inactive)
-
-        def unpressed_student(event):
-            button_student.config(image=root.img1_active)
-
-        button_student = Button(root, image=root.img1_inactive, bg="black", borderwidth=0, width=200,
-                                highlightthickness=0, height=200, bd=0, relief="raised", activebackground="black",
-                                command=self.main_window)
-        button_student.bind("<Enter>", on_enter_student)
-        button_student.bind("<Leave>", on_inactive_student)
-        button_student.bind("<Button-1>", pressed_student)
-        button_student.bind("<ButtonRelease-1>", unpressed_student)
-        button_student.place(x=632, y=393, width=177, height=45)
-
-        # Button close
-        img2_inactive = Image.open(r"buttons\close_inactive.png")
-        img2_inactive = img2_inactive.resize((25, 25))
-
-        img2_active = Image.open(r"buttons\close_active.png")
-        img2_active = img2_active.resize((25, 25))
-
-        root.img2_inactive = ImageTk.PhotoImage(img2_inactive)
-        root.img2_active = ImageTk.PhotoImage(img2_active)
-
-        def on_enter_close(event):
-            button_close.config(image=root.img2_active)
-
-        def on_inactive_close(event):
-            button_close.config(image=root.img2_inactive)
-
-        def pressed_close(event):
-            button_close.config(image=root.img2_inactive)
-
-        def unpressed_close(event):
-            button_close.config(image=root.img2_active)
-
-        button_close = Button(root, image=root.img2_inactive, bg="black", borderwidth=0, width=200,
-                              highlightthickness=0, height=200, bd=0, relief="raised", activebackground="black",
-                              command=self.close)
-        button_close.bind("<Enter>", on_enter_close)
-        button_close.bind("<Leave>", on_inactive_close)
-        button_close.bind("<Button-1>", pressed_close)
-        button_close.bind("<ButtonRelease-1>", unpressed_close)
-        button_close.place(x=870, y=20, width=25, height=25)
-
+    # Functions
     def close(self):
         self.root.destroy()
 
-    def main_window(self):
-        messagebox.showinfo("Attentiface V 1.0", "Your subscription is now activated", parent=self.root)
+    def open_main(self):
+        messagebox.showinfo(
+            "Attentiface V 1.0", 
+            "Your subscription is now activated", 
+            parent = self.root
+        )
         self.root.destroy()
         self.win = Tk()
-        self.main_S = Splash_screen(self.win)
+        self.main = Main(self.win)
         self.win.mainloop()
 
 if __name__ == "__main__":
     root = Tk()
-    obj = Login(root)
+    obj = License(root)
     root.mainloop()
