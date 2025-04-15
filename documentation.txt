@@ -1,0 +1,37 @@
+Employee Table - To store employee data 
+(ID -  autoincrement, 
+last_name, 
+first_name, 
+middle_initial, 
+gender, 
+email, 
+phone_number,
+address, 
+photo_last_taken, 
+employee_id)
+
+Attendance Table -  To store attendance data
+(ID - autoincrement, 
+employee_id, 
+last_name,
+first_name, 
+middle_initial,
+time_in, 
+time_out, 
+date,
+secondary_id)
+
+Schedule Table - To store pasok schedules
+(ID - autoincrement,
+start_time,
+end_time.
+break_time)
+
+Credentials Table- To store the host credentials
+(ID - autoincrement, 
+gmail_address, 
+gmail_api_code)
+
+1. Store an entry in Employee Table
+2. Take Photos (naming convention will be [employee_id].ID.i]
+3. Train the model (labeled data -> [photo_1, photo_n], [ID_1, ID_n])
